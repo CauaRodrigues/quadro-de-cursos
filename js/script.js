@@ -1,4 +1,5 @@
 var listCourses = Array()
+var listTablesCursos = Array()
 
 function done() {
     var nameCourse, durationCourse, startDateCourse, endDateCourse, teacherCourse;
@@ -20,8 +21,6 @@ function done() {
     clearInputs()
 
     showCourse(course)
-
-
 }
 
 function clearInputs(){
@@ -33,25 +32,38 @@ function clearInputs(){
 }
 
 function showCourse(course){
-    let showNameCourse = document.getElementById('name'); 
-    let showDurationCourse = document.getElementById('duration'); 
-    let showStartCourse = document.getElementById('start'); 
-    let showEndCourse = document.getElementById('end'); 
-    let showTeacherCourse = document.getElementById('teacher');
 
     listCourses.push(course);
-
-    for (let i = 0; i < listCourses.length; i++) {
-        showNameCourse.innerText = listCourses[i].name;
-        showDurationCourse.innerText = `${listCourses[i].duration} horas`;
-        showStartCourse.innerText = listCourses[i].start;
-        showEndCourse.innerText = listCourses[i].end;
-        showTeacherCourse.innerText = listCourses[i].teacher;
-    };
     
-    // showNameCourse.innerText = course['name'];
-    // showDurationCourse.innerText = `${course['duration']} horas`;
-    // showStartCourse.innerText = course['start'];
-    // showEndCourse.innerText = course['end'];
-    // showTeacherCourse.innerText = course['teacher'];
+    var tableCourse = 
+        `
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" id="name">${course['name']}</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>Duração:</th>
+                <td id="duration">${course['duration']} Horas</td>
+            </tr>
+            <tr>
+                <th>Data de Início:</th>
+                <td id="start">${course['start']}</td>
+            </tr>
+            <tr>
+                <th>Data Final:</th>
+                <td id="end">${course['end']}</td>
+            </tr>        
+            <tr>
+                <th class="last">Professor:</th>
+                <td id="teacher" class="last">${course['teacher']}</td>
+            </tr>
+        </table>
+        `;
+
+    listTablesCursos.push(tableCourse);
+
+    document.getElementById("showTable").innerHTML = listTablesCursos;
+
 }
